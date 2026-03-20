@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Cia ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+  #letter {
+  overflow-y: auto;
+  justify-content: flex-start; /* 🔥 penting biar mulai dari atas */
+  padding-top: 80px; /* kasih jarak biar ga ketutup */
+}
+#letter div {
+  width: 100%;
+  max-width: 600px;
+}
+#letter {
+  padding-bottom: 120px;
+}
+  /* SUBMIT QUIZ BUTTON */
+#quiz button {
+  margin-top: 25px;
+  padding: 14px 40px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #ff4b91, #ff8fab);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(255, 75, 145, 0.5);
+}
+#quiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* HOVER EFFECT */
+#quiz button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 15px 35px rgba(255, 75, 145, 0.8);
+}
+
+/* KLIK EFFECT */
+#quiz button:active {
+  transform: scale(0.95);
+}
+  .nav-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:40px;
+  color:white;
+  background:rgba(0,0,0,0.3);
+  padding:10px 18px;
+  border-radius:50%;
+  cursor:pointer;
+  user-select:none;
+  opacity:0;
+  transition:0.3s;
+  z-index:1000;
+}
+
+/* posisi */
+#navLeft{ left:30px; }
+#navRight{ right:30px; }
+
+/* efek hover */
+.nav-arrow:hover{
+  background:rgba(255,75,145,0.6);
+  transform:translateY(-50%) scale(1.2);
+}
+
+/* muncul saat aktif */
+.nav-arrow.show{
+  opacity:1;
+}
+    #bouquetPhotos{
+  position:relative;
+  width:300px;
+  height:300px;
+}
+
+.bouquet-img{
+  position:absolute;
+  width:110px;
+  height:150px;
+  object-fit:cover;
+  border-radius:16px;
+
+  border:2px solid rgba(255,255,255,0.3);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.8),
+    0 0 20px rgba(255,105,180,0.6);
+
+  transform-origin:bottom center;
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity:0;
+
+  transition: all 0.8s cubic-bezier(.25,1.5,.5,1);
+}
+/* efek saat foto dipilih */
+.bouquet-img.active{
+  transform: translate(-50%, -50%) scale(2.2) !important;
+  z-index: 999;
+  box-shadow:
+    0 30px 60px rgba(0,0,0,1),
+    0 0 40px rgba(255,105,180,1);
+}
+
+/* foto lain jadi blur */
+.bouquet-img.blur{
+  filter: blur(4px) brightness(0.5);
+  transform: scale(0.9);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Poppins',sans-serif;
+  color:white;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+
+  background: radial-gradient(circle at top,#4b001f,#120005);
+}
+
+html, body{
+  height:100%;
+}
+body{
+  animation:fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* Smooth Fade */
+.section{
+  position:fixed;      /* 🔥 ini yang penting */
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;         /* 🔥 bukan 100vh lagi */
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  transition:all 1s ease;
+  opacity:1;
+  overflow:auto;       /* 🔥 biar bisa scroll kalau panjang */
+}
+
+.hidden{
+opacity:0;
+pointer-events:none;
+transform:scale(1.05);
+}
+
+/* LOGIN */
+#login{
+background:radial-gradient(circle at top,#4b001f,#120005);
+}
+
+.glow{
+position:absolute;
+width:600px;
+height:600px;
+background:radial-gradient(circle,#ff4b91,transparent 70%);
+filter:blur(150px);
+opacity:0.4;
+animation:pulse 6s infinite alternate;
+}
+
+@keyframes pulse{
+from{transform:scale(1);}
+to{transform:scale(1.3);}
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(25px);
+padding:70px 60px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 0 80px rgba(255,0,90,0.4);
+border:1px solid rgba(255,255,255,0.1);
+z-index:2;
+}
+
+.card h1{
+font-family:'Playfair Display',serif;
+font-size:34px;
+margin-bottom:10px;
+background:linear-gradient(45deg,#ff9a9e,#fad0c4);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.card input{
+padding:14px;
+width:100%;
+border-radius:40px;
+border:none;
+text-align:center;
+margin:25px 0;
+background:rgba(255,255,255,0.1);
+color:white;
+}
+
+.card button{
+padding:14px 45px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#ff4b91,#ff8fab);
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card button:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px rgba(255,75,145,0.6);
+}
+
+/* STORY */
+#story{
+background:linear-gradient(180deg,#1a000a,#000);
+text-align:center;
+padding:20px;
+}
+
+.story-container{
+max-width:700px;
+}
+
+.story-container h1{
+font-family:'Playfair Display',serif;
+font-size:40px;
+margin-bottom:20px;
+color:#ff8fab;
+}
+
+#text{
+line-height:1.9;
+font-size:18px;
+min-height:120px;
+}
+
+.countdown{
+margin-top:20px;
+font-size:18px;
+color:#ff8fab;
+}
+
+.story-container button{
+margin-top:30px;
+padding:14px 45px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#ff4b91,#ff8fab);
+color:white;
+cursor:pointer;
+font-size:18px;
+transition:0.3s;
+}
+
+.story-container button:hover{
+transform:scale(1.1);
+box-shadow:0 0 25px rgba(255,75,145,0.7);
+}
+
+/* FOREVER */
+#forever{
+background:linear-gradient(180deg,#3b0014,#1a0008);
+text-align:center;
+overflow-y:auto;
+padding:50px 20px;
+}
+
+#forever h1{
+font-size:48px;
+color:#ffb6c1;
+margin-bottom:20px;
+}
+
+.gallery{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:50px;
+margin-top:40px;
+}
+
+.polaroid{
+background:white;
+padding:15px 15px 60px 15px;
+width:260px;
+box-shadow:0 15px 35px rgba(0,0,0,0.4);
+transform:rotate(-3deg);
+transition:0.4s ease;
+position:relative;
+}
+
+.polaroid:nth-child(2){transform:rotate(4deg);}
+.polaroid:nth-child(3){transform:rotate(-2deg);}
+
+.polaroid:hover{
+transform:rotate(0deg) scale(1.08);
+}
+
+.polaroid img{
+width:100%;
+display:block;
+}
+
+.caption{
+position:absolute;
+bottom:15px;
+left:0;
+right:0;
+text-align:center;
+font-family:'Playfair Display',serif;
+color:#333;
+font-size:14px;
+}
+
+/* QUESTION */
+.question{
+margin-top:50px;
+}
+
+.question button{
+padding:15px 35px;
+margin:15px;
+border:none;
+border-radius:30px;
+font-size:16px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.yes{background:#ff2e93;color:white;}
+
+.no{
+background:#444;
+color:white;
+position:relative;
+}
+
+/* YES MESSAGE */
+#yesMessage{
+display:none;
+font-size:45px;
+margin-top:30px;
+color:#ffb6c1;
+animation:pop 0.6s ease;
+text-align:center;
+}
+
+#yesMessage button{
+margin-top:35px;
+padding:15px 45px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#ffffff,#ffe6f0);
+color:#ff2e93;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 15px 35px rgba(255,45,143,0.5);
+transition:0.3s;
+}
+
+#yesMessage button:hover{
+transform:scale(1.12);
+}
+
+@keyframes pop{
+from{transform:scale(0);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+/* CONFETTI */
+.confetti{
+position:fixed;
+top:-10px;
+font-size:22px;
+animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);opacity:0;}
+}
+
+/* SHAKE */
+.shake{
+animation:shake 0.25s;
+}
+
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-8px);}
+50%{transform:translateX(8px);}
+75%{transform:translateX(-8px);}
+100%{transform:translateX(0);}
+}
+
+.back-btn{
+position:fixed;
+bottom:25px;
+left:25px;
+padding:12px 28px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#ff4b91,#ff8fab);
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px rgba(255,0,90,0.6);
+z-index:999;
+transition:0.3s;
+}
+
+.back-btn:hover{transform:scale(1.05);}
+
+.bubble{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  max-width:300px;
+  background:#ffdee9;
+  padding:12px 20px;
+  border-radius:20px;
+  color:#000;
+  display:none;
+  z-index:9999;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+@keyframes pop{
+  from{transform:scale(0.7);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="chatBubble" class="bubble"></div>
+
+<div id="login" class="section">
+<div class="glow"></div>
+<div class="card">
+<h1>HAI Cia ❤️</h1>
+<p>Masukkan tanggal Pertama Komunikasi 💌</p>
+<input type="password" id="pass">
+<button onclick="login()">Enter</button>
+</div>
+</div>
+
+<div id="story" class="section hidden">
+<div class="story-container">
+<h1>Cia ❤️</h1>
+<p id="text"></p>
+<div class="countdown" id="countdown"></div>
+<button onclick="showForever()">Continue ✨</button>
+</div>
+<button class="back-btn" onclick="backToLogin()">Back</button>
+</div>
+
+<div id="forever" class="section hidden">
+<h1>Forever With You ❤️</h1>
+<p>Aku memilih kamu hari ini, besok, dan selamanya.</p>
+
+<div class="gallery">
+<div class="polaroid" onclick="openBouquet(1)">
+  <img src="cia3.jpeg">
+  <div class="caption">our chaos 🤍</div>
+</div>
+
+<div class="polaroid" onclick="openBouquet(2)">
+  <img src="cia2.jpeg">
+  <div class="caption">my favorite place</div>
+</div>
+
+<div class="polaroid" onclick="openBouquet(3)">
+  <img src="cia4.jpeg">
+  <div class="caption">always you ❤️</div>
+</div>
+</div>
+<div id="bouquet" style="
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+">
+
+  <div id="bouquetPhotos"></div>
+<div id="navLeft" class="nav-arrow">❮</div>
+<div id="navRight" class="nav-arrow">❯</div>
+  <button onclick="closeBouquet()" style="
+    margin-top:30px;
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:#ff4b91;
+    color:white;
+    cursor:pointer;
+  ">Close 💕</button>
+</div>
+
+<div class="question">
+<h2>Will you stay with me forever? 💍</h2>
+<button class="yes" onclick="sayYes()">Yes ❤️</button>
+<button class="no" id="noBtn">No 😝</button>
+</div>
+
+<div id="yesMessage">
+She said YES! 💖<br>
+<button onclick="showHeart()">One Last Thing ❤️</button>
+</div>
+
+<button class="back-btn" onclick="backToStory()">Back</button>
+</div>
+
+<div id="heart" class="section hidden" style="background:black;">
+<canvas id="canvas" width="800" height="800"></canvas>
+<button class="back-btn" style="right:25px;left:auto;" onclick="goToQuiz()">
+  Next 💕
+</button>
+
+<button class="back-btn" onclick="backToForever()">Back ❤️</button>
+</div>
+
+<div id="quiz" class="section hidden" style="background:linear-gradient(180deg,#120005,#000); text-align:center; padding:40px 20px;">
+  <h1 style="color:#ff8fab;font-size:42px;">How Much Do You Love Me? 💖</h1>
+
+  <!-- RATING -->
+  <p style="margin-top:25px;font-size:20px;">Seberapa sayang kamu sama aku?</p>
+  <div id="rating" style="font-size:40px; margin:20px 0;">
+    <span onclick="rate(1)">🤍</span>
+    <span onclick="rate(2)">🤍</span>
+    <span onclick="rate(3)">🤍</span>
+    <span onclick="rate(4)">🤍</span>
+    <span onclick="rate(5)">🤍</span>
+  </div>
+  <p id="rateText" style="font-size:18px;color:#ffb6c1;"></p>
+
+  <!-- QUIZ -->
+  <div style="margin-top:35px;max-width:500px;">
+    <p>📅 Tanggal lahir aku?</p>
+    <input id="q1" placeholder="contoh: 01 januari 2001">
+
+    <p style="margin-top:20px;"> Alat musik favorit aku?</p>
+    <input id="q2" placeholder="-">
+
+    <p style="margin-top:20px;">🍰 Aku lebih suka?</p>
+    <input id="q3" placeholder="manis / asin / pedas / asam">
+  </div>
+
+<button onclick="submitQuiz()">
+  Submit ❤️
+</button>
+
+<!-- 🔥 TAMBAHKAN INI -->
+<button onclick="goToLetter()" style="
+  margin-top:20px;
+  padding:12px 35px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#ffffff,#ffe6f0);
+  color:#ff2e93;
+  cursor:pointer;
+">
+  Baca Surat Dari Aku 💌
+</button>
+
+
+  <p id="result" style="margin-top:25px;font-size:22px;color:#ffb6c1;"></p>
+
+  <button class="back-btn" onclick="backToHeart()">Back</button>
+</div>
+
+<div id="letter" class="section hidden" style="background:linear-gradient(180deg,#1a000a,#000); padding:40px 20px; text-align:center;">
+
+  <h1 style="color:#ff8fab;font-size:40px;">A Letter For You 💌</h1>
+
+  <!-- SURAT DARI KAMU -->
+  <div style="max-width:600px; margin-top:30px; font-size:18px; line-height:1.8;">
+    <p>
+      Hai cia ❤️<br><br>
+aku udah lama mikir mau nyampein ini, tapi jujur aku agak takut juga…
+<br><br>
+takut salah ngomong, takut ngerusak yang udah ada.
+<br><br>
+Tapi makin ke sini aku sadar, perasaan ini gak bisa aku anggap biasa aja.
+<br><br>
+Aku nyaman sama cia.
+<br><br>
+Bukan cuma senang, tapi bener-bener nyaman… yang bikin aku pengen stay lebih lama.
+<br><br>
+      Dan tanpa aku sadari, kamu jadi orang yang paling sering aku pikirin.
+      <br><br>
+      Jadi sekarang aku cuma mau jujur kesekian kalinya...
+      <br><br>
+      aku sayang sama kali, Cia.
+      <br><br>
+      Kalau suatu hari cia ngerasa capek, ingat ya… aku selalu ada buat cia.
+      <br><br>
+      — Dari jere, yang selalu milih cia 💖
+
+      <br><br>
+      -Boleh Tau Ga Apa yang udah cia rasa selama ni?
+    </p>
+  </div>
+
+  <!-- DIA BALAS SURAT -->
+  <div style="margin-top:40px; max-width:500px;">
+    <h2 style="color:#ffb6c1;">Balas suratnya 💕</h2>
+    <textarea id="replyText" placeholder="Tulis sesuatu untuk aku..." 
+      style="width:100%; height:120px; border-radius:15px; border:none; padding:15px; margin-top:15px;"></textarea>
+
+    <button onclick="sendLetter()" style="
+      margin-top:20px;
+      padding:12px 35px;
+      border:none;
+      border-radius:30px;
+      background:linear-gradient(45deg,#ff4b91,#ff8fab);
+      color:white;
+      cursor:pointer;
+    ">
+      Kirim ke Aku 💌
+    </button>
+  </div>
+
+  <button class="back-btn" onclick="backToQuiz()">Back</button>
+</div>
+
+<audio id="bgm" loop>
+<source src="from the start.mpeg" type="audio/mpeg">
+</audio>
+
+<audio id="popSound">
+<source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3">
+</audio>
+
+<script>
+  const q1 = document.getElementById("q1").value;
+const q2 = document.getElementById("q2").value;
+const q3 = document.getElementById("q3").value;
+  function backToQuiz(){
+  letter.classList.add("hidden");
+  setTimeout(()=>quiz.classList.remove("hidden"),800);
+}
+    
+    document.addEventListener("DOMContentLoaded", () => {
+  resetLogIfNewDay();
+});
+
+function handleEnter(e){
+  if(e.key === "Enter"){
+    login();
+  }
+}
+
+    function resetLogIfNewDay(){
+  const today = new Date().toDateString();
+  const lastDay = localStorage.getItem("last_day");
+
+  if(lastDay !== today){
+    localStorage.removeItem("love_log");
+    localStorage.setItem("last_day", today);
+  }
+}
+
+/* ===== NORMALIZE TYPO ===== */
+function normalize(text){
+  return text
+    .toLowerCase()
+    .replace(/\s+/g,'')
+    .replace(/[^a-z0-9]/g,'');
+}
+
+/* ===== RANDOM SONG ===== */
+const loveSongs = [
+  "https://open.spotify.com/track/2iUXsYOEPhVqEBwsqP70rE",
+  "https://open.spotify.com/track/1o6LQ6J9G1WQJY1Zf5yXvF",
+  "https://open.spotify.com/track/6GGtHZgBycCgGBUhZo81xe"
+];
+
+function randomSong(){
+  return loveSongs[Math.floor(Math.random()*loveSongs.length)];
+}
+
+/* ===== RANDOM PHOTO ===== */
+const memoryPhotos = [
+  "https://i.imgur.com/foto5.jpeg",
+  "https://i.imgur.com/foto6.jpeg",
+  "https://i.imgur.com/foto7.jpeg"
+];
+
+function randomPhoto(){
+  return memoryPhotos[Math.floor(Math.random()*memoryPhotos.length)];
+}
+
+function showBubble(text){
+  const bubble = document.getElementById("chatBubble");
+
+  bubble.innerText = text;
+  bubble.style.display = "block";
+
+  setTimeout(()=>{
+    bubble.style.display = "none";
+  }, 3000);
+}
+
+
+const bgm=document.getElementById("bgm");
+
+document.addEventListener("click",()=>{if(bgm.paused) bgm.play();},{once:true});
+
+const loginDiv=document.getElementById("login");
+const story=document.getElementById("story");
+const forever=document.getElementById("forever");
+const heart=document.getElementById("heart");
+const letter = document.getElementById("letter");
+const quiz = document.getElementById("quiz");
+
+function login(){
+  const input = document.getElementById("pass").value.trim();
+
+  if(input === "030326"){
+    loginDiv.classList.add("hidden");
+    setTimeout(()=>story.classList.remove("hidden"),800);
+    startTyping(); 
+    startCountdown();
+  }else{
+    const card = document.querySelector(".card");
+
+    // efek shake
+    card.classList.add("shake");
+    setTimeout(()=>card.classList.remove("shake"),300);
+
+    // bubble hint
+    showBubble("Coba ingat… tanggal pertama kita chat 💌");
+
+    // reset input (biar user coba lagi)
+    document.getElementById("pass").value = "";
+  }
+}
+
+function showForever(){story.classList.add("hidden");setTimeout(()=>forever.classList.remove("hidden"),800);}
+function backToLogin(){story.classList.add("hidden");setTimeout(()=>loginDiv.classList.remove("hidden"),800);}
+function backToStory(){
+  forever.classList.add("hidden");
+  setTimeout(()=>{
+    story.classList.remove("hidden");
+    resetNoButton(); 
+  },800);
+}
+function backToForever(){
+  heart.classList.add("hidden");
+  setTimeout(()=>{
+    forever.classList.remove("hidden");
+    resetNoButton(); // 🔥 reset
+  },800);
+}
+
+let msg="Kamu bukan hanya seseorang yang aku sayang. Kamu adalah rumah, tempat aku pulang, dan alasan aku percaya bahwa cinta itu nyata.";
+let i=0;
+function startTyping(){
+text.innerHTML="";i=0;
+(function type(){if(i<msg.length){text.innerHTML+=msg[i++];setTimeout(type,40);}})();
+}
+
+function startCountdown(){
+let start=new Date("2026-03-03");
+setInterval(()=>{
+let days=Math.floor((new Date()-start)/(1000*60*60*24));
+countdown.innerText="Sudah bersama "+days+" hari ❤️";
+},1000);
+}
+
+function sayYes(){
+yesMessage.style.display="block";
+popSound.play();
+confettiBurst();
+}
+
+/* NO BUTTON BRUTAL */
+const noBtn=document.getElementById("noBtn");
+// 🔥 simpan posisi awal
+const noInitialStyle = {
+  position: noBtn.style.position,
+  top: noBtn.style.top,
+  left: noBtn.style.left
+};
+function moveNoBtn(){
+noBtn.style.position="absolute";
+noBtn.style.top=Math.random()*80+"%";
+noBtn.style.left=Math.random()*80+"%";
+}
+function resetNoButton(){
+  noBtn.style.position = "relative";
+  noBtn.style.top = "0";
+  noBtn.style.left = "0";
+}
+noBtn.addEventListener("mouseover",moveNoBtn);
+noBtn.addEventListener("touchstart",moveNoBtn); // buat HP/tablet juga
+noBtn.addEventListener("click",moveNoBtn); // kalau nekat klik
+;
+
+function confettiBurst(){
+for(let i=0;i<80;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.innerHTML=["💖","✨","❤️","💘"][Math.floor(Math.random()*4)];
+c.style.left=Math.random()*100+"vw";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3000);
+}
+}
+
+let heartStarted=false;
+function showHeart(){
+forever.classList.add("hidden");
+setTimeout(()=>{heart.classList.remove("hidden");if(!heartStarted) drawHeart();},800);
+}
+
+function drawHeart(){
+heartStarted=true;
+const c=document.getElementById("canvas");
+const ctx=c.getContext("2d");
+ctx.translate(c.width/2,c.height/2);
+ctx.strokeStyle="#ff5fa2";ctx.lineWidth=2;
+let i=0;ctx.beginPath();
+function x(t){return 16*Math.pow(Math.sin(t),3);}
+function y(t){return 13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t);}
+(function d(){
+let t=i/50;
+let px=x(t)*20,py=-y(t)*20;
+i?ctx.lineTo(px,py):ctx.moveTo(px,py);
+ctx.stroke(); i++;
+if(i<6000) requestAnimationFrame(d);
+})();
+}
+/* ===== QUIZ & RATING ===== */
+let loveRate = 0;
+
+function rate(n){
+  loveRate = n;
+  const hearts = document.querySelectorAll("#rating span");
+  hearts.forEach((h,i)=>{
+    h.textContent = i < n ? "❤️" : "🤍";
+  });
+
+  const texts=[
+    "",
+    "Hmm… masa segini doang 😢",
+    "Lumayan, tapi aku pengen lebih 💕",
+    "Aku senyum baca ini 😊",
+    "Aku ngerasa disayang 🥰",
+    "Ini cinta sejati 💍❤️"
+  ];
+  document.getElementById("rateText").innerText = texts[n];
+}
+
+function submitQuiz(){
+  let score = 0;
+
+  const q1 = document.getElementById("q1").value;
+  const q2 = document.getElementById("q2").value;
+  const q3 = document.getElementById("q3").value;
+
+  if(q1.toLowerCase().includes("08") && q1.toLowerCase().includes("april")) score++;
+  if(q2.toLowerCase().includes("gitar")) score++;
+  if(q3.toLowerCase().includes("manis")) score++;
+
+  saveLog(score);
+
+  let msg = "";
+
+  if(score === 3 && loveRate >= 4){
+    msg = "💖 Kamu benar-benar mengenal dan mencintai aku.\nAku ngerasa jadi orang paling beruntung.";
+
+    document.getElementById("result").innerText =
+      msg + "\n\n💌 Menghubungkan ke WhatsApp...";
+
+    setTimeout(()=>{
+      sendWhatsApp();
+    }, 2000);
+
+  }else if(score >= 2){
+    msg = "🥰 Kamu sayang aku, dan itu terasa nyata.";
+    document.getElementById("result").innerText = msg;
+
+  }else{
+    msg = "😝 Kamu harus lebih kenal aku lagi ya~";
+    document.getElementById("result").innerText = msg;
+  }
+}
+
+function sendWhatsApp(){
+  const phone = "6282235802348"; 
+  // GANTI dengan nomor WhatsApp kamu (62 tanpa +)
+
+  const text = encodeURIComponent(
+    "gg❤️\n" +
+    "gelo 😳\n\n" +
+    "omaga, yes sir 💖"
+  );
+
+  window.location.href = `https://wa.me/${phone}?text=${text}`;
+}
+
+function goToLetter(){
+  quiz.classList.add("hidden");
+  setTimeout(()=>letter.classList.remove("hidden"),800);
+}
+
+function goToQuiz(){
+  heart.classList.add("hidden");
+  setTimeout(()=>quiz.classList.remove("hidden"),800);
+}
+
+function backToHeart(){
+  quiz.classList.add("hidden");
+  setTimeout(()=>heart.classList.remove("hidden"),800);
+}
+
+/* ===== JEJAK LOG (AMAN) ===== */
+function saveLog(score){
+  let logs = localStorage.getItem("love_log");
+
+  if(!logs){
+    logs = [];
+  }else{
+    logs = JSON.parse(logs);
+  }
+
+  logs.push({
+    score: score,
+    waktu: new Date().toLocaleString()
+  });
+
+  localStorage.setItem("love_log", JSON.stringify(logs));
+}
+
+document.getElementById("pass").addEventListener("keydown", function(e){
+  if(e.key === "Enter"){
+    login();
+  }
+});
+/* ===== BOUQUET SYSTEM ===== */
+const bouquetData = {
+  1: ["cia5.jpeg","jem1.jpeg","cia6.jpeg","jem2.jpeg","cia10.jpeg"],
+  2: ["cia11.jpeg","jem7.jpeg","cia16.jpeg","jem8.jpeg","cia9.jpeg"],
+  3: ["cia14.jpeg","jem10.jpeg","cia13.jpeg","jem11.jpeg","cia15.jpeg"]
+};
+
+function openBouquet(id){
+  const container = document.getElementById("bouquet");
+  const wrap = document.getElementById("bouquetPhotos");
+
+  container.style.display = "flex";
+  wrap.innerHTML = "";
+
+  const photos = bouquetData[id]; // 🔥 ambil sesuai klik
+
+  const total = photos.length;
+  const spread = 140;
+
+  photos.forEach((src, i)=>{
+    const img = document.createElement("img");
+    img.src = src;
+    img.className = "bouquet-img";
+
+    img.style.left = "50%";
+    img.style.top = "65%";
+
+    let angle = (i - (total-1)/2) * (spread/(total-1));
+
+    setTimeout(()=>{
+      img.style.transform = `
+        translate(-50%, -50%)
+        rotate(${angle}deg)
+        translateY(-160px)
+        scale(1)
+      `;
+      img.style.opacity = "1";
+    }, i * 120);
+img.addEventListener("click", ()=>{
+  zoomPhoto(img);
+});
+    wrap.appendChild(img);
+  });
+  currentPhotos = Array.from(document.querySelectorAll(".bouquet-img"));
+
+document.body.setAttribute("tabindex","0");
+document.body.focus();
+}
+function zoomPhoto(selected){
+  const all = document.querySelectorAll(".bouquet-img");
+
+  currentPhotos = Array.from(all);
+  currentIndex = currentPhotos.indexOf(selected);
+
+  all.forEach(img=>{
+    img.classList.remove("active","blur");
+
+    if(img !== selected){
+      img.classList.add("blur");
+    }
+  });
+
+  selected.classList.add("active");
+
+  // 🔥 TAMBAHKAN INI DI SINI
+  sparkleEffect();
+
+  // tampilkan panah
+  document.getElementById("navLeft").classList.add("show");
+  document.getElementById("navRight").classList.add("show");
+}
+function showNext(dir){
+  if(currentPhotos.length === 0) return;
+
+  currentIndex += dir;
+
+  if(currentIndex < 0) currentIndex = currentPhotos.length - 1;
+  if(currentIndex >= currentPhotos.length) currentIndex = 0;
+
+  zoomPhoto(currentPhotos[currentIndex]);
+}
+
+function closeBouquet(){
+  document.getElementById("bouquet").style.display = "none";
+}
+document.getElementById("navLeft").onclick = () => showNext(-1);
+document.getElementById("navRight").onclick = () => showNext(1);
+window.addEventListener("keydown",(e)=>{
+  // hanya aktif saat bouquet terbuka
+  const isOpen = document.getElementById("bouquet").style.display === "flex";
+  if(!isOpen) return;
+
+  if(e.key === "ArrowRight"){
+    e.preventDefault();
+    showNext(1);
+  }
+
+  if(e.key === "ArrowLeft"){
+    e.preventDefault();
+    showNext(-1);
+  }
+});
+let startX = 0;
+
+document.getElementById("bouquet").addEventListener("touchstart",(e)=>{
+  startX = e.touches[0].clientX;
+});
+
+document.getElementById("bouquet").addEventListener("touchend",(e)=>{
+  let endX = e.changedTouches[0].clientX;
+
+  if(endX - startX > 50){
+    showNext(-1); // swipe kanan
+  }else if(startX - endX > 50){
+    showNext(1); // swipe kiri
+  }
+});
+let currentIndex = 0;
+let currentPhotos = [];
+function sparkleEffect(){
+  for(let i=0;i<20;i++){
+    let s=document.createElement("div");
+    s.innerHTML="✨";
+    s.style.position="fixed";
+    s.style.left=Math.random()*100+"vw";
+    s.style.top=Math.random()*100+"vh";
+    s.style.fontSize="20px";
+    s.style.animation="fall 2s linear forwards";
+    document.body.appendChild(s);
+
+    setTimeout(()=>s.remove(),2000);
+  }
+}
+function sendLetter(){
+  const text = document.getElementById("replyText").value.trim();
+
+  if(text === ""){
+    alert("Tulis dulu dong 🥺");
+    return;
+  }
+
+  const phone = "6282235802348"; // nomor kamu
+
+  const message = encodeURIComponent(
+    "💌 Balasan untuk kamu:\n\n" + text + "\n\n❤️"
+  );
+
+  window.location.href = `https://wa.me/${phone}?text=${message}`;
+}
+</script>
+
+</body>
+</html>
