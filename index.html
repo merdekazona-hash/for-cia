@@ -8,6 +8,58 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
+  #letter div:last-child {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+  /* ===== LETTER BUTTON STYLE ===== */
+#letter .yes,
+#letter .no {
+  padding: 14px 40px;
+  margin: 15px;
+  border: none;
+  border-radius: 40px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* YES BUTTON (ROMANTIC GLOW) */
+#letter .yes {
+  background: linear-gradient(45deg, #ff4b91, #ff8fab);
+  color: white;
+  box-shadow: 0 10px 25px rgba(255, 75, 145, 0.6);
+}
+
+#letter .yes:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 35px rgba(255, 75, 145, 0.9);
+}
+
+/* NO BUTTON (SOFT DARK STYLE) */
+#letter .no {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffb6c1;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* efek hover NO */
+#letter .no:hover {
+  background: rgba(255, 75, 145, 0.2);
+  transform: scale(1.05);
+}
+
+/* biar posisi tetap enak */
+#letter .no,
+#letter .yes {
+  position: relative;
+}
+
   #letter {
   overflow-y: auto;
   justify-content: flex-start; /* 🔥 penting biar mulai dari atas */
@@ -602,29 +654,41 @@ She said YES! 💖<br>
   <!-- SURAT DARI KAMU -->
   <div style="max-width:600px; margin-top:30px; font-size:18px; line-height:1.8;">
     <p>
-      Hai cia ❤️<br><br>
-aku udah lama mikir mau nyampein ini, tapi jujur aku agak takut juga…
+      Hallo Cyakkk❤️<br><br>
+aku udah lama mikir mau nyampein ini, tapi jujur aku takut" gimana gitu...
 <br><br>
-takut salah ngomong, takut ngerusak yang udah ada.
+setelah belajar dari lagu 'Risk It All' aku jadi paham
 <br><br>
-Tapi makin ke sini aku sadar, perasaan ini gak bisa aku anggap biasa aja.
+kalau cinta tu harus berani ambil resiko
 <br><br>
-Aku nyaman sama cia.
+jadi disini aku berani all in
+walau gada jaminan bakal HAPPY ENDING
 <br><br>
-Bukan cuma senang, tapi bener-bener nyaman… yang bikin aku pengen stay lebih lama.
+Soalnya lebih sakit 'what if'
 <br><br>
-      Dan tanpa aku sadari, kamu jadi orang yang paling sering aku pikirin.
+      daripada 'At Least Aku Dah Pernah Coba'
       <br><br>
-      Jadi sekarang aku cuma mau jujur kesekian kalinya...
+      Jadi Jeremiah mu disini, mau Cya jadi belly nya dan dengan status yang sama dengan film tu
       <br><br>
-      aku sayang sama kali, Cia.
+      Kalau suatu hari nanti semuanya berubah, Jere tetap mau jadi orang yang milih Cya dari awal lagi
       <br><br>
-      Kalau suatu hari cia ngerasa capek, ingat ya… aku selalu ada buat cia.
+      Jadi… Cya mau ga jadi pasangan jere...?
       <br><br>
-      — Dari jere, yang selalu milih cia 💖
+      aku udah di posisi yang betul takut kehilangan dan kedeluan orang Cya
+      <br><br>
+      dan yang jere rasain ini bukan hal yang biasa dalam hidup 
+      <br><br>
+      dah ga bisa ku tahan lagi ngomong ni
+      <br><br>
+      Cya ga perlu buru-buru jawab ini, kalo Cya ga bisa jawab malam ni esok pun tak pa
+      <br><br>
+      -Maapin cara jere kurang effort, tadi rencana nya mau bilang waktu duduk...
+      <br><br>
+      tapi yasudahlahh
+      <br><br>
+      -From Jeremiah
+      To My Belly 
 
-      <br><br>
-      -Boleh Tau Ga Apa yang udah cia rasa selama ni?
     </p>
   </div>
 
@@ -644,24 +708,28 @@ Bukan cuma senang, tapi bener-bener nyaman… yang bikin aku pengen stay lebih l
       cursor:pointer;
     ">
       Kirim ke Aku 💌
+      
     </button>
+        <div style="margin-top:25px;">
+  <button class="yes" onclick="acceptLetter()">Yes ❤️</button>
+  <button class="no" id="noBtnLetter">No 😝</button>
+</div>
   </div>
 
   <button class="back-btn" onclick="backToQuiz()">Back</button>
 </div>
 
 <audio id="bgm" loop>
-<source src="from the start.mpeg" type="audio/mpeg">
+  <source id="bgmSource" src="from the start.mpeg" type="audio/mpeg">
 </audio>
+
 
 <audio id="popSound">
 <source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3">
 </audio>
 
 <script>
-  const q1 = document.getElementById("q1").value;
-const q2 = document.getElementById("q2").value;
-const q3 = document.getElementById("q3").value;
+
   function backToQuiz(){
   letter.classList.add("hidden");
   setTimeout(()=>quiz.classList.remove("hidden"),800);
@@ -803,6 +871,9 @@ confettiBurst();
 
 /* NO BUTTON BRUTAL */
 const noBtn=document.getElementById("noBtn");
+const yesBtn = document.querySelector(".yes");
+let yesSize = 1;
+
 // 🔥 simpan posisi awal
 const noInitialStyle = {
   position: noBtn.style.position,
@@ -810,10 +881,15 @@ const noInitialStyle = {
   left: noBtn.style.left
 };
 function moveNoBtn(){
-noBtn.style.position="absolute";
-noBtn.style.top=Math.random()*80+"%";
-noBtn.style.left=Math.random()*80+"%";
+  noBtn.style.position="absolute";
+  noBtn.style.top=Math.random()*80+"%";
+  noBtn.style.left=Math.random()*80+"%";
+
+  // tampilkan bubble random
+  const randomText = noMessages[Math.floor(Math.random()*noMessages.length)];
+  showBubble(randomText);
 }
+
 function resetNoButton(){
   noBtn.style.position = "relative";
   noBtn.style.top = "0";
@@ -1114,6 +1190,68 @@ function sendLetter(){
 
   window.location.href = `https://wa.me/${phone}?text=${message}`;
 }
+const noMessages = [
+  "eh jangan 😭",
+  "aku tau kamu mau pencet yes 😏",
+  "jangan pura-pura 😤",
+  "ayo jujur aja 😌",
+  "klik yes ajaa 🥺",
+  "aku udah effort loh 😭❤️"
+];
+/* ===== NO BUTTON LETTER ===== */
+const noBtnLetter = document.getElementById("noBtnLetter");
+
+const noMessagesLetter = [
+  "eh jangan di sini juga 😭",
+  "masa ditolak di surat 💔",
+  "aku udah nulis panjang loh 😤",
+  "jangan gitu dong 🥺",
+  "ayo bilang yes aja 💕"
+];
+
+let noSizeLetter = 1;
+
+function moveNoBtnLetter(){
+  if(!noBtnLetter) return;
+
+  noBtnLetter.style.position="absolute";
+  noBtnLetter.style.top=Math.random()*80+"%";
+  noBtnLetter.style.left=Math.random()*80+"%";
+
+  const randomText = noMessagesLetter[Math.floor(Math.random()*noMessagesLetter.length)];
+  showBubble(randomText);
+
+  noSizeLetter -= 0.1;
+  if(noSizeLetter < 0.5) noSizeLetter = 0.5;
+
+  noBtnLetter.style.transform = `scale(${noSizeLetter})`;
+}
+
+/* aktifkan event */
+if(noBtnLetter){
+  noBtnLetter.addEventListener("mouseover", moveNoBtnLetter);
+  noBtnLetter.addEventListener("click", moveNoBtnLetter);
+  noBtnLetter.addEventListener("touchstart", moveNoBtnLetter);
+}
+
+/* YES di letter */
+function acceptLetter(){
+  showBubble("aku tau kamu ga bisa nolak aku 😏❤️");
+  confettiBurst();
+
+  // 🔥 GANTI LAGU
+  const bgm = document.getElementById("bgm");
+  const source = document.getElementById("bgmSource");
+
+  bgm.pause(); // stop lagu sekarang
+
+  source.src = "kota.mp3"; // 🔥 ganti dengan lagu kamu
+  bgm.load();
+  bgm.play();
+}
+
+
+
 </script>
 
 </body>
