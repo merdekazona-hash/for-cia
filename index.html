@@ -8,10 +8,185 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
-  #videoGallery video{
+  .secret-img{
+  width:150px;
+  height:200px;
+  object-fit:cover;
+  border-radius:15px;
+  cursor:pointer;
+
+  box-shadow:0 10px 25px rgba(255,75,145,0.5);
+  transition:all 0.4s ease;
+}
+
+.secret-img:hover{
+  transform:scale(1.08);
+}
+
+.secret-img.active{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%) scale(2.5);
+  z-index:999999;
+
+  box-shadow:
+    0 30px 60px rgba(0,0,0,1),
+    0 0 40px rgba(255,105,180,1);
+}
+
+.secret-img.blur{
+  filter:blur(4px) brightness(0.4);
+}
+  /* ===== NAME PAGE ===== */
+#dynamicName{
+  font-family:'Playfair Display',serif;
+  font-size:48px;
+  text-align:center;
+  background:linear-gradient(45deg,#ff9a9e,#fad0c4,#ff4b91);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  letter-spacing:2px;
+
+  text-shadow:
+    0 0 20px rgba(255,105,180,0.6),
+    0 0 40px rgba(255,105,180,0.4);
+
+  opacity:0;
+  transform:translateY(20px);
+  transition:all 1s ease;
+}
+
+#dynamicName.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* tombol */
+.next-btn{
+  margin-top:40px;
+  padding:14px 40px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#ff4b91,#ff8fab);
+  color:white;
+  cursor:pointer;
+  font-size:18px;
+  transition:0.3s;
+}
+
+.next-btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 25px rgba(255,75,145,0.7);
+}
+  #videoGallery button{
+  margin-top:20px;
+  padding:12px 30px;
+  border:none;
+  border-radius:25px;
+  background:linear-gradient(45deg,#ff4b91,#ff8fab);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+#videoGallery button:hover{
+  transform:scale(1.05);
+}
+  .video-nav{
+  padding-left: max(15px, env(safe-area-inset-left));
+  padding-right: max(15px, env(safe-area-inset-right));
+}
+  @media(max-width:768px){
+  .video-nav{
+    padding:0 15px;
+  }
+
+  .video-btn{
+    width:50px;
+    height:50px;
+    font-size:22px;
+  }
+}
+
+@media(max-width:480px){
+  .video-btn{
+    width:45px;
+    height:45px;
+    font-size:20px;
+  }
+}
+  #videoGallery{
+  padding:20px;
+}
+  /* ===== VIDEO NAVIGATION BUTTON ===== */
+.video-nav{
+  position:absolute;
+  width:100%;
+  top:50%;
+  transform:translateY(-50%);
+  display:flex;
+  justify-content:space-between;
+  padding:0 30px;
+  pointer-events:none; /* biar klik hanya ke tombol */
+}
+
+.video-btn{
+  pointer-events:auto;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:none;
+  font-size:28px;
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(255,255,255,0.08);
+  color:#ff8fab;
+
+  backdrop-filter:blur(12px);
+
+  box-shadow:
+    0 10px 25px rgba(255,75,145,0.3),
+    inset 0 0 10px rgba(255,255,255,0.1);
+
+  transition:all 0.3s ease;
+}
+
+/* HOVER */
+.video-btn:hover{
+  transform:scale(1.2);
+  background:linear-gradient(45deg,#ff4b91,#ff8fab);
+  color:white;
+
+  box-shadow:
+    0 15px 35px rgba(255,75,145,0.8),
+    0 0 20px rgba(255,105,180,0.6);
+}
+
+/* KLIK */
+.video-btn:active{
+  transform:scale(0.9);
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .video-btn{
+    width:50px;
+    height:50px;
+    font-size:22px;
+  }
+}
+#videoGallery video{
   width:100%;
   max-width:900px;
-  max-height:80vh;
+  max-height:75vh;
+  border-radius:16px;
 }
 
 @media (max-width:600px){
@@ -516,6 +691,7 @@ transition:0.3s;
 </head>
 
 <body>
+  
 
 <div id="chatBubble" class="bubble"></div>
 
@@ -545,17 +721,17 @@ transition:0.3s;
 
 <div class="gallery">
 <div class="polaroid" onclick="openBouquet(1)">
-  <img src="cia3.jpeg">
+  <img src="imup1.jpeg">
   <div class="caption">our chaos 🤍</div>
 </div>
 
 <div class="polaroid" onclick="openBouquet(2)">
-  <img src="cia2.jpeg">
+  <img src="imup3.jpeg">
   <div class="caption">my favorite place</div>
 </div>
 
 <div class="polaroid" onclick="openBouquet(3)">
-  <img src="cia4.jpeg">
+  <img src="imup2.jpeg">
   <div class="caption">always you ❤️</div>
 </div>
 </div>
@@ -613,10 +789,10 @@ transition:0.3s;
 </video>
 
   <!-- NAV -->
-  <div style="margin-top:20px;">
-    <button onclick="prevVideo()">⬅</button>
-    <button onclick="nextVideo()">➡</button>
-  </div>
+<div class="video-nav">
+  <button class="video-btn prev" onclick="prevVideo()">❮</button>
+  <button class="video-btn next" onclick="nextVideo()">❯</button>
+</div>
 
   <button onclick="closeVideoGallery()" style="
     margin-top:25px;
@@ -769,8 +945,6 @@ Si Cantik
       Kirim ke Aku 💌
       
     </button>
-    <button onclick="prevVideo()" style="margin:5px;padding:10px 20px;border-radius:20px;">⬅</button>
-<button onclick="nextVideo()" style="margin:5px;padding:10px 20px;border-radius:20px;">➡</button>
         <div style="margin-top:25px;">
   <button class="yes" onclick="acceptLetter()">Yes ❤️</button>
   <button class="no" id="noBtnLetter">No 😝</button>
@@ -781,15 +955,160 @@ Si Cantik
 </div>
 
 <audio id="bgm" loop>
-  <source id="bgmSource" src="from the start.mpeg" type="audio/mpeg">
+  <source id="bgmSource" src="major.mp4" type="audio/mpeg">
 </audio>
 
 
 <audio id="popSound">
 <source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3">
 </audio>
+<div id="namePage" class="section hidden" style="background:radial-gradient(circle at top,#1a000a,#000);">
+  
+  <h1 id="dynamicName"></h1>
+  <p style="margin-top:20px;color:#ffb6c1;">someone special in my life ❤️</p>
+
+  <button onclick="goToStory()" class="next-btn">
+    Continue ✨
+  </button>
+
+</div>
 
 <script>
+
+  document.addEventListener("DOMContentLoaded", ()=>{
+  const btn = document.getElementById("closeSecretZoom");
+  if(btn){
+    btn.onclick = closeSecretZoom;
+  }
+});
+
+  function closeSecretZoom(){
+  const all = document.querySelectorAll(".secret-img");
+  const closeBtn = document.getElementById("closeSecretZoom");
+
+  all.forEach(img=>{
+    img.classList.remove("active","blur");
+  });
+
+  closeBtn.style.display = "none";
+}
+
+
+
+function zoomSecret(selected){
+  const all = document.querySelectorAll(".secret-img");
+  const closeBtn = document.getElementById("closeSecretZoom");
+
+  all.forEach(img=>{
+    img.classList.remove("active","blur");
+
+    if(img !== selected){
+      img.classList.add("blur");
+    }
+  });
+
+  selected.classList.add("active");
+
+  // tampilkan tombol close
+  closeBtn.style.display = "block";
+}
+
+  let typed = "";
+
+window.addEventListener("keydown", (e)=>{
+  typed += e.key.toLowerCase();
+
+  if(typed.length > 10){
+    typed = typed.slice(-10);
+  }
+
+  if(typed.includes(easterEggCode)){
+    openSecretGallery();
+    typed = ""; // reset
+  }
+});
+
+  function openSecretGallery(){
+  const container = document.getElementById("secretGallery");
+  const wrap = document.getElementById("secretPhotos");
+
+  wrap.innerHTML = "";
+
+  secretGallery.forEach(src=>{
+    const img = document.createElement("img");
+img.src = src;
+img.className = "secret-img";
+
+img.addEventListener("click", ()=>{
+  zoomSecret(img);
+});
+
+    img.style.width = "150px";
+    img.style.height = "200px";
+    img.style.objectFit = "cover";
+    img.style.borderRadius = "15px";
+    img.style.boxShadow = "0 10px 25px rgba(255,75,145,0.5)";
+
+    wrap.appendChild(img);
+  });
+
+  container.style.display = "flex";
+
+  showBubble("Kamu nemu rahasia kita 😳💖");
+}
+
+function closeSecretGallery(){
+  document.getElementById("secretGallery").style.display = "none";
+}
+
+const easterEggCode = "cyakjemy"; // 🔥 kode rahasia
+
+const secretGallery = [
+  "cyak1.jpeg",
+  "cyak5.jpeg",
+  "cyak4.jpeg",
+  "cyak3.jpeg"
+];
+
+  let fullName = "Gracia Anggreini Fitaloka Hutagaol ❤️"; // 🔥 ganti nama lengkap di sini
+
+function showNamePage(){
+  loginDiv.classList.add("hidden");
+
+  const namePage = document.getElementById("namePage");
+  namePage.classList.remove("hidden");
+
+  startNameTyping(); // langsung jalan tanpa delay
+}
+function startNameTyping(){
+  const el = document.getElementById("dynamicName");
+  el.innerHTML = "";
+  el.classList.add("show"); // 🔥 langsung muncul
+
+  let i = 0;
+
+  function type(){
+    if(i < fullName.length){
+      el.innerHTML += fullName[i];
+      i++;
+      setTimeout(type, 80); // bisa dipercepat dari 80 → 60
+    }
+  }
+
+  type();
+}
+
+function goToStory(){
+  const namePage = document.getElementById("namePage");
+
+  namePage.classList.add("hidden");
+
+  setTimeout(()=>{
+    story.classList.remove("hidden");
+    startTyping();
+    startCountdown();
+  },800);
+}
 
 function fadeOutAudio(audio){
   let vol = audio.volume;
@@ -820,6 +1139,10 @@ function fadeInAudio(audio){
 }
 
 const videos = [
+  "cyak7.mp4",
+  "cyak8.mp4",
+  "cyak9.mp4",
+  "cyak10.mp4",
   "bndl1.mp4",
   "bndl2.mp4",
   "bndl3.mp4"
@@ -961,7 +1284,7 @@ function login(){
 
   if(input === "030326"){
     loginDiv.classList.add("hidden");
-    setTimeout(()=>story.classList.remove("hidden"),800);
+    showNamePage();
     startTyping(); 
     startCountdown();
   }else{
@@ -1191,9 +1514,9 @@ document.getElementById("pass").addEventListener("keydown", function(e){
 });
 /* ===== BOUQUET SYSTEM ===== */
 const bouquetData = {
-  1: ["cia5.jpeg","jem1.jpeg","cia6.jpeg","jem2.jpeg","cia10.jpeg"],
-  2: ["cia11.jpeg","jem7.jpeg","cia16.jpeg","jem8.jpeg","cia9.jpeg"],
-  3: ["cia14.jpeg","jem10.jpeg","cia13.jpeg","jem11.jpeg","cia15.jpeg"]
+  1: ["cia5.jpeg","jemy1.jpeg","cia6.jpeg","jemy2.jpeg","cia10.jpeg"],
+  2: ["lop4.jpeg","jem7.jpeg","lop6.jpeg","jem8.jpeg","lop5.jpeg"],
+  3: ["lop3.jpeg","jem10.jpeg","lop2.jpeg","jem11.jpeg","lop1.jpeg"]
 };
 
 function openBouquet(id){
@@ -1401,6 +1724,59 @@ function acceptLetter(){
 
 
 </script>
+<div id="secretGallery" style="
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:black;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:999999;
+">
 
+  <h1 style="color:#ff8fab;margin-bottom:20px;">
+    Secret Memories 💖
+  </h1>
+
+  <div id="secretPhotos" style="
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    max-width:900px;
+  "></div>
+
+  <button onclick="closeSecretGallery()" style="
+    margin-top:30px;
+    padding:12px 30px;
+    border:none;
+    border-radius:25px;
+    background:#ff4b91;
+    color:white;
+    cursor:pointer;
+  ">
+    Tutup 💕
+  </button>
+</div>
+<button id="closeSecretZoom" style="
+  display:none;
+  position:fixed;
+  top:30px;
+  right:30px;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:#ff4b91;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  z-index:9999999;
+">
+  Tutup ❌
+</button>
 </body>
 </html>
